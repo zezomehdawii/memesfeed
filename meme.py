@@ -1,9 +1,11 @@
 from flask import Flask, render_template
+import os
 import requests
 from flask import request
 from flask import jsonify
-
+from flask_tor import run_with_tor
 import json
+
 app = Flask(__name__)
 
 
@@ -33,4 +35,7 @@ def index():
     meme_pic, subriddit = get_mem()
     return render_template('meme_index.html', meme_pic=meme_pic, subriddit=subriddit, ip=ip)
     #
-app.run(host="0.0.0.0", port=80)
+
+#port = run_with_tor()
+if __name__ == '__main__':
+    app.run(debug=True)
